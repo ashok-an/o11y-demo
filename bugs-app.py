@@ -1,12 +1,23 @@
 import json
 import os
+import random
+import time
 
+import redis
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
+from flask_api_cache import ApiCache
 
 app = Flask(__name__)
+
 app.config["MONGO_URI"] = os.getenv('MONGODB_URI') or "mongodb://localhost:27017/db0"
 mongo = PyMongo(app)
+
+
+redis_host = os.getenv('REDIS_HOST') or 'localhost'
+redis_port = os.getenv('REDIS_PORT') or 6379
+redis_instance = redis.StrictRedis(host=redis_host, port=int(redis_port))
+
 
 @app.route('/')
 def root():
@@ -17,7 +28,11 @@ def ping():
     return jsonify({'message': 'pong'})
 
 @app.route('/bugs')
-def get_all_bugs():
+@ApiCache(redis=redis_instance, expired_time=15)
+def get_bugs():
+
+    time.sleep(random.uniform(2, 5))
+
     params = {}
     user_id = request.args.get('user_id')
     if user_id:
