@@ -15,8 +15,8 @@ mongo = PyMongo(app)
 
 
 redis_host = os.getenv('REDIS_HOST') or 'localhost'
-redis_port = os.getenv('REDIS_PORT') or 6379
-redis_instance = redis.StrictRedis(host=redis_host, port=int(redis_port))
+redis_port = os.getenv('REDIS_PORT') or '6379'
+redis_instance = redis.StrictRedis(host=redis_host, port=redis_port)
 
 
 @app.route('/')
