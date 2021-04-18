@@ -1,4 +1,4 @@
-all: clean build deploy test
+all: clean build push deploy test
 	@echo "All done"
 
 test:
@@ -11,6 +11,10 @@ clean:
 build: clean
 	docker build -f Dockerfile.bugs -t ashoka007/test-bugs .
 	docker build -f Dockerfile.notes -t ashoka007/test-notes .
- 
+
+push:
+	docker push ashoka007/test-bugs
+	docker push ashoka007/test-notes
+
 deploy:
 	./run_containers.sh

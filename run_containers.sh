@@ -14,5 +14,5 @@ docker run -d -p 12345:12345 \
   --link test-redis:redis --link test-mongo:mongo --link test-notes:notes\
   --name test-bugs ashoka007/test-bugs
 
-sleep 10
+sleep 2
 docker ps | grep "test-"

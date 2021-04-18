@@ -27,7 +27,7 @@ def ping():
 
 @app.route('/_bugs')
 def get_bugs_with_notes():
-    data = list(mongo.db.notes.find({}, {'bug_id': 0}, limit=20))
+    data = list(mongo.db.notes.find({}, limit=20))
     bugs = sorted(set([i.get('bug_id') for i in data]))
     return jsonify({'bugs': bugs})
 
@@ -37,7 +37,7 @@ def get_notes(bug_id):
 
     time.sleep(random.uniform(0.5, 2.0))
 
-    data = list(mongo.db.notes.find({'bug_id': bug_id}, {'_id': 0}))
+    data = list(mongo.db.notes.find({'bug_id': bug_id}, {'_id': 0, 'bug_id': 0}))
     if data:
         return jsonify({'bug_id': bug_id, 'notes': data[:10]})
     else:
