@@ -1,5 +1,6 @@
 # About
-    This is a demo of kubernetes using 2 web applications (implemented with *flask*) with *mongodb* backend and *redis* as cache
+  This is a demo of kubernetes using 2 web applications (implemented with *flask*) 
+ with *mongodb* backend and *redis* as cache
 
 # Architecture
 ```
