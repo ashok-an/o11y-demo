@@ -1,3 +1,6 @@
+# About
+    This is a demo of kubernetes using 2 web applications (implemented with *flask*) with *mongodb* backend and *redis* as cache
+
 # Architecture
 ```
 [ client ]  -> [ bugs:12345 ] ->  |-> [ redis:6379 ]
@@ -14,5 +17,5 @@
 1. `linkerd check --pre`
 2. `linkerd install | kubectl apply -f -`
 3. `linkerd check`
-4. Inject: `cat deployment.yaml | linkerd inject - | kubectl apply -f -` (for each deployment)
+4. Inject side-car: `cat deployment.yaml | linkerd inject - | kubectl apply -f -` (for each deployment)
 5. `linkerd dashboard &`
