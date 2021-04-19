@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo
+    tier: mw
+  name: deploy-notes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo
+        con: notes
+    spec:
+      containers:
+      - image: ashoka007/test-notes
+        name: test-notes
+        envFrom:
+          - configMapRef:
+              name: cm-notes
+        ports:
+        - containerPort: 23456
+        resources: {}
+status: {}

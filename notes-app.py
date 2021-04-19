@@ -10,6 +10,9 @@ from flask_api_cache import ApiCache
 
 app = Flask(__name__)
 
+for i in ['MONGODB_URI', 'REDIS_HOST', 'REDIS_PORT']:
+    print(f"Env var: {i}={os.getenv(i)}")
+ 
 app.config["MONGO_URI"] = os.getenv('MONGODB_URI') or "mongodb://localhost:27017/db0"
 mongo = PyMongo(app)
 

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo
+    tier: mw
+  name: deploy-bugs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo
+        con: bugs
+    spec:
+      containers:
+      - image: ashoka007/test-bugs
+        name: test-bugs
+        envFrom:
+          - configMapRef:
+              name: cm-notes
+          - configMapRef:
+              name: cm-bugs
+        ports:
+        - containerPort: 12345
+        resources: {}
+status: {}

@@ -2,6 +2,7 @@
 
 import argparse
 import pprint
+import os
 import random
 
 import pymongo
@@ -37,7 +38,9 @@ def gen_bugs(count):
     documents = gen.documents(count)
     return documents
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+mongodb_host = os.getenv('MONGODB_HOST') or "localhost"
+mongodb_port = os.getenv('MONGODB_PORT') or "27017"
+client = pymongo.MongoClient(f'mongodb://{mongodb_host}:{mongodb_port}/')
 db = client["db0"]
 
 def seed_bugs(bug_list):
@@ -45,7 +48,7 @@ def seed_bugs(bug_list):
 
     for bug in bug_list:
         try:
-            bugs.insert(bug)
+            bugs.insert_one(bug)
         except Exception as e:
             print(f'Insert failed for bug:{bug.get("_id")}. Exception={e}')
         else:
@@ -80,4 +83,4 @@ if __name__ == '__main__':
         if c:
             seed_notes(i.get('_id'))
         else:
-            print(f'Skip notes for bug:{i.get("_id")}')
+            print(f'- Skip notes for bug:{i.get("_id")}')

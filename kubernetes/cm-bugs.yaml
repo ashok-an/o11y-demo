@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  NOTES_BASE_URL: http://10.104.3.1:23456
+kind: ConfigMap
+metadata:
+  name: cm-bugs
+  namespace: demo

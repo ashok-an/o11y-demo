@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: demo
+    tier: db
+  name: svc-mongo-cip
+  namespace: demo
+spec:
+  ports:
+  - port: 27017
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    con: mongo
+  type: ClusterIP

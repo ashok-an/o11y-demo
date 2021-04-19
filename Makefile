@@ -16,5 +16,5 @@ push:
 	docker push ashoka007/test-bugs
 	docker push ashoka007/test-notes
 
-deploy:
+local-deploy:
 	./run_containers.sh
