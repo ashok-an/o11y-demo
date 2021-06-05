@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: demo
+  creationTimestamp: null
+  labels:
+    app: svc-bugs-np
+  name: svc-bugs-np
+spec:
+  ports:
+  - name: 12345-62345
+    port: 12345
+    protocol: TCP
+    targetPort: 62345
+  selector:
+    ms: bugs
+  type: NodePort
+status:
+  loadBalancer: {}

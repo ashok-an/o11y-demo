@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: demo
+  creationTimestamp: null
+  labels:
+    app: svc-notes-np
+  name: svc-notes-np
+spec:
+  ports:
+  - name: 23456-63456
+    port: 23456
+    protocol: TCP
+    targetPort: 63456
+  selector:
+    ms: notes
+  type: NodePort
+status:
+  loadBalancer: {}

@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: demo
   creationTimestamp: null
   labels:
     app: demo
     tier: mw
+    ms: bugs
   name: deploy-bugs
 spec:
   replicas: 1
